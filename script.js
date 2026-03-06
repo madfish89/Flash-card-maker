@@ -1,17 +1,13 @@
-// script.js — NEW VERSION (replace your old one)
 let currentDoc = null;
 
 const { jsPDF } = window.jspdf;
 
 // Default example
-const defaultInput = `el deporte, sport
-el baloncesto / el básquetbol, basketball
-correr, to run
-jugar al fútbol, I play soccer
-hacer surf, to surf
-escuchar música, to listen to music
-levantar pesas, to lift weights
-salir con amigos, to go out with friends`;
+const defaultInput = `el deporte sport
+el baloncesto / el básquetbol basketball
+correr to run
+jugar al fútbol I play soccer
+`;
 
 window.onload = () => {
   document.getElementById("input").value = defaultInput;
@@ -38,7 +34,7 @@ function parseInput() {
   return text
     .split("\n")
     .map((line) => {
-      const commaIndex = line.indexOf(",");
+      const commaIndex = line.indexOf(" ");
       if (commaIndex === -1) return null;
 
       const front = line.substring(0, commaIndex).trim();
@@ -97,7 +93,6 @@ function addFlashcardPage(doc, texts, cardsPerPage) {
   const cardW = (210 - 2 * marginX - (cols - 1) * spacingX) / cols;
   const cardH = (297 - 2 * marginY - (rows - 1) * spacingY) / rows;
 
-  // Dynamic font size so text always fits nicely
   let fontSize = Math.max(16, Math.min(42, Math.floor(cardH * 0.62)));
   doc.setFont("helvetica", "bold");
   doc.setFontSize(fontSize);
@@ -181,7 +176,7 @@ function createPDF() {
 function downloadPDF() {
   if (!currentDoc) return;
   let filename = document.getElementById("pdf-filename").value.trim();
-  if (!filename) {
+  if (!filename == "") {
     filename = "myflashcards";
   }
   filename = filename.replace(/[^a-z0-9-_ ]/gi, '_').trim();
