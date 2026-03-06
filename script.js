@@ -178,11 +178,14 @@ function createPDF() {
   document.getElementById("download-btn").disabled = false;
   document.getElementById("download-btn").classList.remove("opacity-50");
 }
-
 function downloadPDF() {
   if (!currentDoc) return;
-  currentDoc.save("My_Flashcards.pdf");
-
+  let filename = document.getElementById("pdf-filename").value.trim();
+  if (!filename) {
+    filename = "myflashcards";
+  }
+  filename = filename.replace(/[^a-z0-9-_ ]/gi, '_').trim();
+  currentDoc.save(filename + '.pdf');
   const status = document.getElementById("status");
   status.innerHTML = `Downloaded! Print double-sided → Flip on long edge`;
   setTimeout(() => (status.innerHTML = ""), 7000);
