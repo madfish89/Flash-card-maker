@@ -82,8 +82,6 @@ function renderPreview() {
     grid.innerHTML += cardHTML;
   });
 }
-
-// Auto-update preview while typing
 document.getElementById("input").addEventListener("input", renderPreview);
 
 function addFlashcardPage(doc, texts, cardsPerPage) {
@@ -150,10 +148,7 @@ function createPDF() {
     unit: "mm",
     format: "a4",
   });
-
-  // FIX: Remove the extra blank page that jsPDF creates by default
   doc.deletePage(1);
-
   for (let i = 0; i < pairs.length; i += cardsPerPage) {
     const group = pairs.slice(i, i + cardsPerPage);
     const fronts = group.map((p) => p.front);
@@ -179,7 +174,7 @@ function createPDF() {
 
   currentDoc = doc;
   document.getElementById("status").innerHTML =
-    `✅ PDF ready! ${doc.getNumberOfPages()} pages • ${cardsPerPage} cards per page`;
+    `PDF ready! ${doc.getNumberOfPages()} pages • ${cardsPerPage} cards per page`;
   document.getElementById("download-btn").disabled = false;
   document.getElementById("download-btn").classList.remove("opacity-50");
 }
@@ -189,7 +184,7 @@ function downloadPDF() {
   currentDoc.save("My_Flashcards.pdf");
 
   const status = document.getElementById("status");
-  status.innerHTML = `🎉 Downloaded! Print double-sided → Flip on long edge`;
+  status.innerHTML = `Downloaded! Print double-sided → Flip on long edge`;
   setTimeout(() => (status.innerHTML = ""), 7000);
 }
 
