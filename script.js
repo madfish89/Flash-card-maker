@@ -2,11 +2,10 @@ let currentDoc = null;
 
 const { jsPDF } = window.jspdf;
 
-// Default example
-const defaultInput = `el deporte sport
-el baloncesto / el básquetbol basketball
-correr to run
-jugar al fútbol I play soccer
+const defaultInput = `el deporte  sport
+el baloncesto / el básquetbol  basketball
+correr  to run
+jugar al fútbol  I play soccer
 `;
 
 window.onload = () => {
@@ -34,7 +33,7 @@ function parseInput() {
   return text
     .split("\n")
     .map((line) => {
-      const commaIndex = line.indexOf(" ");
+      const commaIndex = line.indexOf("  ");
       if (commaIndex === -1) return null;
 
       const front = line.substring(0, commaIndex).trim();
