@@ -2,10 +2,8 @@ let currentDoc = null;
 
 const { jsPDF } = window.jspdf;
 
-const defaultInput = `el deporte  sport
-el baloncesto / el básquetbol  basketball
-correr  to run
-jugar al fútbol  I play soccer
+const defaultInput = `6  7
+6,7
 `;
 
 window.onload = () => {
